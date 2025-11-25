@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Matrix Loader</title>
+<style>
+    body {
+        background: black;
+        color: #00ff00;
+        font-family: monospace;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    #matrix {
+        white-space: pre;
+        font-size: 14px;
+        line-height: 14px;
+    }
+    #btn {
+        display: none;
+        margin-top: 20px;
+        padding: 12px 25px;
+        background: #00ff00;
+        color: black;
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 6px;
+    }
+</style>
+</head>
+<body>
+
+<div id="matrix"></div>
+<button id="btn" onclick="go()">POKRAČOVAŤ</button>
+
+<script>
+    const matrix = document.getElementById("matrix");
+    const btn = document.getElementById("btn");
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    function randomLine() {
+        let line = "";
+        for (let i = 0; i < width / 10; i++) {
+            line += Math.random() > 0.97 ? chars[Math.floor(Math.random() * chars.length)] : " ";
+        }
+        return line;
+    }
+
+    let interval = setInterval(() => {
+        matrix.textContent += randomLine() + "\n";
+        if (matrix.textContent.split("\n").length > height / 14) {
+            matrix.textContent = "";
+        }
+    }, 30);
+
+    // Po 3 sekundách zobrazí tlačidlo
+    setTimeout(() => {
+        btn.style.display = "inline-block";
+    }, 3000);
+
+    function go() {
+        window.location.href = "https://www.instagram.com/nataliapupakova/";
+    }
+</script>
+
+</body>
+</html>
